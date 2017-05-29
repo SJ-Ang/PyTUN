@@ -1,7 +1,7 @@
 # PyTUN
 Tunneling Correction for Chemical Reactions using Eckart Potential 
 
-Equations obtained from "Garrett, B. C., & Truhlar, D. G. (1979). Semiclassical tunneling calculations. Journal of Physical ChemistryEquations, 83(22), 2921-2926."
+Equations obtained from "Garrett, B. C., & Truhlar, D. G. (1979). Semiclassical tunneling calculations. Journal of Physical Chemistry, 83(22), 2921-2926."
 
 Reads Gaussian09 output files to generate "Tunneling Correction" κ and Apparent Free Energy Barrier
 
