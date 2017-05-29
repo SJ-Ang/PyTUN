@@ -17,6 +17,7 @@ User has to provide 6 files placed in the same directory as PyTUN.py:
 5. ts.out (Frequency calculation of transition state)
 6. ts_sp.out (Single-point calculation of transition state)
 
+Simply Type:
 ```Python
 Python PyTUN.py
 ```
