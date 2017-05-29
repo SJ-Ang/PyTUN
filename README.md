@@ -1,5 +1,5 @@
 # PyTUN
-Tunneling Correction for Chemical Reactions using Eckart Potential 
+Tunneling Correction to Chemical Kinetics using Eckart Potential 
 
 Equations obtained from "Garrett, B. C., & Truhlar, D. G. (1979). Semiclassical tunneling calculations. Journal of Physical Chemistry, 83(22), 2921-2926."
 
