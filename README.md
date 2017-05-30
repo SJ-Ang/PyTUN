@@ -5,6 +5,8 @@ Equations obtained from "Garrett, B. C., & Truhlar, D. G. (1979). Semiclassical 
 
 Reads Gaussian09 output files to generate "Tunneling Correction" κ, Corrected Rate (s<sup>-1</sup>) and Apparent Free Energy Barrier (kJmol<sup>-1</sup>)
 
+Rate is obtained using the Eyring-Polanyi Equation $Y=F(X)$
+
 Integration to obtain κ was calculated using 10-point Gauss-Legendre quadrature(Gives exact solution for polynomials of order up till 21)
 
 Zero-point energy corrections are added to each species in the calculation.
