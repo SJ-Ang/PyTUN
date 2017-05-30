@@ -3,7 +3,7 @@ Tunneling Correction to Chemical Kinetics using Eckart Potential
 
 Equations obtained from "Garrett, B. C., & Truhlar, D. G. (1979). Semiclassical tunneling calculations. Journal of Physical Chemistry, 83(22), 2921-2926."
 
-Reads Gaussian09 output files to generate "Tunneling Correction" κ (dimensionless), Corrected Rate k<sub>corr</sub> (s<sup>-1</sup>) and Apparent Free Energy Barrier (kJmol<sup>-1</sup>)
+Reads Gaussian09 output files to generate Tunneling Correction κ (dimensionless), Corrected Rate k<sub>corr</sub> (s<sup>-1</sup>) and Apparent Free Energy Barrier (kJmol<sup>-1</sup>)
 
 Uncorrected rate [k<sub>uncorr</sub>] is obtained using the Eyring-Polanyi Equation, while Apparent Free Energy Barrier is back-tranformed from the k<sub>corr</sub> [k<sub>corr</sub>=κk<sub>uncorr</sub>] using the same equation. 
 
