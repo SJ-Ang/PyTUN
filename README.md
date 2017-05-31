@@ -26,8 +26,8 @@ Python PyTUN.py
 Sample Output:
 ```
 Uncorrected delta G dagger is 80.000000
-Uncorrected rate is 9.5430604327E-03
+Uncorrected rate is 5.9960817096E-02
 The tunneling correction is 6.500000
-Corrected rate is 6.2029892812E-02
+Corrected rate is 3.8974531112E-01
 Apparent delta G dagger is 75.359883
 ```
