@@ -167,7 +167,7 @@ d = D(bee,mu,alpha)
 #Calculation of Uncorrected Gibbs Free Energy Barrier in kJ/mol and Rate
 delta_g_dagg = (G_ts - G_r)*2625.5
 print "Uncorrected delta G dagger is %f" % delta_g_dagg
-ln_uncorr_rate = math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (2*PI*PLANCK_CONSTANT))-delta_g_dagg*1000/(GAS_CONSTANT*TEMPERATURE)  
+ln_uncorr_rate = math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT))-delta_g_dagg*1000/(GAS_CONSTANT*TEMPERATURE)  
 uncorr_rate = "{:.10E}".format(math.exp(ln_uncorr_rate))
 print "Uncorrected rate is %s" % uncorr_rate
 
@@ -182,7 +182,7 @@ print "The tunneling correction is %f" % kappa
 #Calculation of Apparent Gibbs Free Energy Barrier in kJ/mol and Rate
 corr_rate = "{:.10E}".format(kappa*math.exp(ln_uncorr_rate))
 print "Corrected rate is %s" % corr_rate
-delta_g_dagg_app = GAS_CONSTANT * TEMPERATURE * (math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (2*PI*PLANCK_CONSTANT)) - math.log(kappa) - ln_uncorr_rate) /1000
+delta_g_dagg_app = GAS_CONSTANT * TEMPERATURE * (math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT)) - math.log(kappa) - ln_uncorr_rate) /1000
 print "Apparent delta G dagger is %f" % delta_g_dagg_app
 
 
