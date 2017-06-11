@@ -20,7 +20,7 @@ User has to provide 6 files placed in the same directory as PyTUN.py:
 5. ts.out (Frequency calculation of transition state)
 6. ts_sp.out (Single-point calculation of transition state)
 
-Run PyTUN with Python 2 [Tested with Python 2.7] (Python 3 is currently not supported)
+Run PyTUN with Python 2.7 (Python 3 is currently not supported)
 
 Simply Type:
 ```Python
