@@ -1,6 +1,6 @@
 # PyTUN
 
-Tunneling Correction to Chemical Kinetics using Eckart Potential 
+Tunneling Correction to Chemical Kinetics 
 
 Equations obtained from: 
 
