@@ -7,7 +7,7 @@
 #        heights from Gaussian 09 using Eckart Potential.             #
 #######################################################################
 ####################  Written by: Shi Jun Ang #########################
-################  Last modified:  May 31, 2017 ########################
+################  Last modified:  Dec 04, 2017 ########################
 #######################################################################
 
 import sys, math, time
@@ -137,6 +137,7 @@ def S(V_max,E):
 	S = math.sinh(((V_max-E)) / (TEMPERATURE*k))
 	return S
 TEMPERATURE = float(temperature('ts.out'))
+#TEMPERATURE = 200
 V_r = float(final_scf_energy('reactant_sp.out')) + float(zero_point_energy('reactant.out'))
 V_p = float(final_scf_energy('product_sp.out')) + float(zero_point_energy('product.out'))
 V_max = float(final_scf_energy('ts_sp.out')) + float(zero_point_energy('ts.out'))
@@ -154,6 +155,10 @@ V_max = V_max - V_r
 V_p = V_p - V_r
 E_o = E_o - V_r
 V_r = V_r - V_r
+#V_p = 0.000/autokcal
+#V_r = 0.00
+#V_max = 9.80/autokcal
+#E_o = 0.00/autokcal
 y = (V_max - E_o)/2.0 
 z = (V_max + E_o)/2.0 
 
@@ -171,19 +176,49 @@ ln_uncorr_rate = math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT))-
 uncorr_rate = "{:.10E}".format(math.exp(ln_uncorr_rate))
 print "Uncorrected rate is %s" % uncorr_rate
 
-#Calculation of Tunneling correction using 10-point Gauss-Legendre Quadrature
+#Calculation of Wigner tunneling correction
+kappa_w = 1+(( (F_s/mu)**0.5 / (k*TEMPERATURE) )**2) / 24
+print "The Wigner tunneling correction is %f" % kappa_w
+
+#Calculation of Skodje tunneling correction
+alpha_s = (2*PI/((F_s/mu)**0.5))
+beta_s = (1/ (k*TEMPERATURE))
+if V_p < V_r:
+	Vee = 0
+else:
+	Vee = V_p-V_r
+if alpha_s > beta_s:
+	kappa_s = (beta_s*PI/alpha_s)/(math.sin(beta_s*PI/alpha_s))+(beta_s/(alpha_s-beta_s)*math.exp((beta_s-alpha_s)*(V_max-Vee)))
+else:
+	kappa_s = (beta_s/(beta_s-alpha_s)*(math.exp((beta_s-alpha_s)*(V_max-Vee))-1))
+print "The Skodje tunneling correction is %f" % kappa_s
+
+
+#Calculation of Eckart tunneling correction using 10-point Gauss-Legendre Quadrature
 kappa = 1
 for i in range(0,10):
 	a = A((x[i] * y + z),mu,alpha)
 	b = B((x[i] * y + z),mu,V_p,V_r,alpha)
 	kappa = (2 * y  / (TEMPERATURE*k) * w[i] * S((V_max),(x[i] * y + z)) * T(a,b,d)) + kappa
-print "The tunneling correction is %f" % kappa
+print "The Eckart tunneling correction is %f" % kappa
 
-#Calculation of Apparent Gibbs Free Energy Barrier in kJ/mol and Rate
+#Calculation of Wigner Apparent Gibbs Free Energy Barrier in kJ/mol and Rate
+print "For Wigner Tunneling:"
+corr_rate_w = "{:.10E}".format(kappa_w*math.exp(ln_uncorr_rate))
+print "Corrected rate is %s" % corr_rate_w
+delta_g_dagg_app_w = GAS_CONSTANT * TEMPERATURE * (math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT)) - math.log(kappa_w) - ln_uncorr_rate) /1000
+print "Apparent delta G dagger is %f" % delta_g_dagg_app_w
+
+#Calculation of Skodje Apparent Gibbs Free Energy Barrier in kJ/mol and Rate
+print "For Skodje Tunneling:"
+corr_rate_s = "{:.10E}".format(kappa_s*math.exp(ln_uncorr_rate))
+print "Corrected rate is %s" % corr_rate_s
+delta_g_dagg_app_s = GAS_CONSTANT * TEMPERATURE * (math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT)) - math.log(kappa_s) - ln_uncorr_rate) /1000
+print "Apparent delta G dagger is %f" % delta_g_dagg_app_s
+
+#Calculation of Eckart Apparent Gibbs Free Energy Barrier in kJ/mol and Rate
+print "For Eckart Tunneling:"
 corr_rate = "{:.10E}".format(kappa*math.exp(ln_uncorr_rate))
 print "Corrected rate is %s" % corr_rate
 delta_g_dagg_app = GAS_CONSTANT * TEMPERATURE * (math.log(BOLTZMANN_CONSTANT * TEMPERATURE / (PLANCK_CONSTANT)) - math.log(kappa) - ln_uncorr_rate) /1000
 print "Apparent delta G dagger is %f" % delta_g_dagg_app
-
-
-
