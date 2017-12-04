@@ -10,7 +10,7 @@ Garrett, B. C., & Truhlar, D. G., Semiclassical tunneling calculations. J. of Ph
 
 R. T. Skodje, D. G. Truhlar and B. C. Garrett, A general small-curvature approximation for transition-state-theory transmission coefficients, J. Phys. Chem., 1981, 85, 3019–3023. (Parabolic Approximation)
 
-Reads Gaussian09 output files to generate Tunneling Correction κ (dimensionless), Corrected Rate k<sub>corr</sub> (s<sup>-1</sup>) and Apparent Free Energy Barrier (kJmol<sup>-1</sup>)
+Read Gaussian09 output files to generate Tunneling Correction κ (dimensionless), Corrected Rate k<sub>corr</sub> (s<sup>-1</sup>) and Apparent Free Energy Barrier (kJmol<sup>-1</sup>)
 
 Uncorrected rate [k<sub>uncorr</sub>] is obtained using the Eyring-Polanyi Equation, while Apparent Free Energy Barrier is back-transformed from the k<sub>corr</sub> [k<sub>corr</sub>=κk<sub>uncorr</sub>] using the same equation. 
 
